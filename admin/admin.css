@@ -1,0 +1,102 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f8f6fb;
+    display:flex;
+    min-height:100vh;
+}
+
+/* ===== Sidebar ===== */
+
+.sidebar{
+    width:260px;
+    background:linear-gradient(180deg,#ff5fa2,#ff85b8);
+    color:white;
+    padding:30px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    box-shadow:5px 0 25px rgba(0,0,0,.1);
+}
+
+.sidebar h2{
+    font-family:'Playfair Display',serif;
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.menu{
+    background:transparent;
+    border:none;
+    color:white;
+    font-size:16px;
+    text-align:left;
+    padding:15px;
+    border-radius:15px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.menu:hover{
+    background:rgba(255,255,255,.20);
+}
+
+.menu.active{
+    background:white;
+    color:#ff5fa2;
+    font-weight:600;
+}
+
+/* ===== Content ===== */
+
+.content{
+    flex:1;
+    padding:40px;
+}
+
+.content h1{
+    color:#d63384;
+    font-family:'Playfair Display',serif;
+}
+
+.subtitle{
+    color:#777;
+    margin-top:8px;
+    margin-bottom:35px;
+}
+
+/* ===== Dashboard Cards ===== */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:25px;
+    padding:30px;
+    box-shadow:0 15px 35px rgba(255,105,180,.12);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h3{
+    color:#888;
+    font-size:15px;
+    margin-bottom:10px;
+}
+
+.card h2{
+    color:#ff4f9a;
+    font-size:34px;
+}
