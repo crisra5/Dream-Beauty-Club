@@ -117,19 +117,35 @@ if (settings.memberButtonColor) {
         document.getElementById("memberName").textContent = member.nombre;
     }
 
-    // Estado
-if (member.estado) {
+    // Estado de la membresía
 
-    let status = member.estado.toLowerCase();
+let active = false;
 
-    if (status === "activo" || status === "usado") {
-        status = "ACTIVE";
-    } else {
-        status = status.toUpperCase();
-    }
+if (member.expira) {
+
+    const today = new Date();
+
+    const expiration = new Date(member.expira);
+
+    active = expiration >= today;
+
+}
+
+if (active) {
 
     document.getElementById("memberStatus").textContent =
-        "✨ " + status + " MEMBER ✨";
+        "✨ ACTIVE MEMBER ✨";
+
+    document.getElementById("memberStatus").style.background =
+        "#35c759";
+
+} else {
+
+    document.getElementById("memberStatus").textContent =
+        "✨ EXPIRED MEMBER ✨";
+
+    document.getElementById("memberStatus").style.background =
+        "#ff3b30";
 
 }
 

@@ -16,6 +16,7 @@ Manage all Dream Beauty Club members.
 
 <th>Code</th>
 <th>Status</th>
+<th>Expires</th>
 <th>First Name</th>
 <th>Last Name</th>
 <th>Actions</th>
@@ -38,6 +39,12 @@ const table = document.getElementById("membersTable");
 
 members.forEach(member => {
 
+let expires = "-";
+
+if(member.expira){
+    expires = new Date(member.expira).toLocaleDateString();
+}
+
 table.innerHTML += `
 
 <tr>
@@ -45,6 +52,8 @@ table.innerHTML += `
 <td>${member.codigo}</td>
 
 <td>${member.estado}</td>
+
+<td>${expires}</td>
 
 <td>${member.nombre || "-"}</td>
 
@@ -82,15 +91,19 @@ fetch(API_URL + "?action=renew&row=" + row)
 
 .then(r => r.text())
 
-.then(text => {
+.then(() => {
 
-    alert(text);
+    alert("Membership Renewed! 💖");
 
     loadMembers();
 
 });
 
 }
+
+// ==============================
+// EXPIRE
+// ==============================
 
 function expireMembership(row){
 
