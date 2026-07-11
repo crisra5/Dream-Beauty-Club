@@ -78,20 +78,32 @@ Expire
 
 function renewMembership(row){
 
-alert("Renew Membership: " + row);
+fetch(API_URL + "?action=renew&row=" + row)
 
-// Aquí después conectaremos con Apps Script
+.then(r => r.text())
+
+.then(() => {
+
+    alert("Membership Renewed! 💖");
+
+    loadMembers();
+
+});
 
 }
 
-// ==============================
-// EXPIRE
-// ==============================
-
 function expireMembership(row){
 
-alert("Expire Membership: " + row);
+fetch(API_URL + "?action=expire&row=" + row)
 
-// Aquí después conectaremos con Apps Script
+.then(r => r.text())
+
+.then(() => {
+
+    alert("Membership Expired!");
+
+    loadMembers();
+
+});
 
 }
