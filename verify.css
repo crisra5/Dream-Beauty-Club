@@ -1,0 +1,134 @@
+:root{
+
+    --verify-card-color:#ffffff;
+    --verify-border-color:#f3c7d8;
+    --verify-badge-color:#ff5fa2;
+
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(135deg,#ffd6e8,#ffeef5,#fff8fb);
+
+}
+
+.background{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:25px;
+
+}
+
+.verify-card{
+
+    width:100%;
+    max-width:360px;
+
+    padding:30px;
+
+    border-radius:30px;
+
+    background:var(--verify-card-color);
+
+    border:2px solid var(--verify-border-color);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    box-shadow:0 20px 45px rgba(255,105,180,.18);
+
+    text-align:center;
+
+}
+
+.logo{
+
+    width:80px;
+
+    display:none;
+
+    margin:0 auto 18px;
+
+}
+
+#verifyTitle{
+
+    font-family:'Playfair Display',serif;
+
+    color:#ff4f9a;
+
+    font-size:32px;
+
+    margin-bottom:8px;
+
+}
+
+#verifySubtitle{
+
+    color:#888;
+
+    margin-bottom:25px;
+
+}
+
+#verifyName{
+
+    font-family:'Playfair Display',serif;
+
+    color:#d63384;
+
+    font-size:28px;
+
+    margin-bottom:20px;
+
+}
+
+.badge{
+
+    display:inline-block;
+
+    padding:12px 24px;
+
+    border-radius:999px;
+
+    background:var(--verify-badge-color);
+
+    color:white;
+
+    font-weight:600;
+
+    margin-bottom:22px;
+
+}
+
+#verifyExpiration{
+
+    color:#777;
+
+    line-height:1.6;
+
+}
