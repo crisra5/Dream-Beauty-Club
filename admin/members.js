@@ -82,9 +82,9 @@ fetch(API_URL + "?action=renew&row=" + row)
 
 .then(r => r.text())
 
-.then(() => {
+.then(text => {
 
-    alert("Membership Renewed! 💖");
+    alert(text);
 
     loadMembers();
 
