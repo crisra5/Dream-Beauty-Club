@@ -18,6 +18,7 @@ Manage all Dream Beauty Club members.
 <th>Status</th>
 <th>First Name</th>
 <th>Last Name</th>
+<th>Actions</th>
 
 </tr>
 
@@ -29,13 +30,13 @@ Manage all Dream Beauty Club members.
 
 fetch(API_URL)
 
-.then(r=>r.json())
+.then(r => r.json())
 
-.then(members=>{
+.then(members => {
 
-const table=document.getElementById("membersTable");
+const table = document.getElementById("membersTable");
 
-members.forEach(member=>{
+members.forEach(member => {
 
 table.innerHTML += `
 
@@ -49,6 +50,18 @@ table.innerHTML += `
 
 <td>${member.apellido || "-"}</td>
 
+<td>
+
+<button onclick="renewMembership(${member.fila})">
+Renew
+</button>
+
+<button onclick="expireMembership(${member.fila})">
+Expire
+</button>
+
+</td>
+
 </tr>
 
 `;
@@ -56,5 +69,29 @@ table.innerHTML += `
 });
 
 });
+
+}
+
+// ==============================
+// RENEW
+// ==============================
+
+function renewMembership(row){
+
+alert("Renew Membership: " + row);
+
+// Aquí después conectaremos con Apps Script
+
+}
+
+// ==============================
+// EXPIRE
+// ==============================
+
+function expireMembership(row){
+
+alert("Expire Membership: " + row);
+
+// Aquí después conectaremos con Apps Script
 
 }
