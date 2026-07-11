@@ -191,6 +191,39 @@ placeholder="https://...">
 
 <hr>
 
+<hr>
+
+<h2>✅ Verification Page</h2>
+
+<label>Verification Title</label>
+<input id="verifyTitle">
+
+<label>Verification Subtitle</label>
+<input id="verifySubtitle">
+
+<label>Verification Background URL</label>
+<input id="verifyBackground">
+
+<br><br>
+
+<label>Verification Card Color</label>
+<input type="color" id="verifyCardColor">
+
+<br><br>
+
+<label>Verification Border Color</label>
+<input type="color" id="verifyBorderColor">
+
+<br><br>
+
+<label>ACTIVE Badge Color</label>
+<input type="color" id="verifyActiveColor">
+
+<br><br>
+
+<label>EXPIRED Badge Color</label>
+<input type="color" id="verifyExpiredColor">
+
 <h2>📝 Login</h2>
 
 <label>Website Name</label>
@@ -404,6 +437,27 @@ settings.memberBadgeColor || "#ff5fa2";
 document.getElementById("memberButtonColor").value =
 settings.memberButtonColor || "#ff5fa2";
 
+document.getElementById("verifyTitle").value =
+settings.verifyTitle || "Dream Beauty Club";
+
+document.getElementById("verifySubtitle").value =
+settings.verifySubtitle || "Membership Verification";
+
+document.getElementById("verifyBackground").value =
+settings.verifyBackground || "";
+
+document.getElementById("verifyCardColor").value =
+settings.verifyCardColor || "#ffffff";
+
+document.getElementById("verifyBorderColor").value =
+settings.verifyBorderColor || "#f3c7d8";
+
+document.getElementById("verifyActiveColor").value =
+settings.verifyActiveColor || "#35c759";
+
+document.getElementById("verifyExpiredColor").value =
+settings.verifyExpiredColor || "#ff3b30";
+
 });
 
 document.getElementById("saveSettings").onclick = function () {
@@ -494,7 +548,28 @@ encodeURIComponent(document.getElementById("memberBorderColor").value) +
 
 "&memberBadgeColor=" + encodeURIComponent(document.getElementById("memberBadgeColor").value) +
 
-"&memberButtonColor=" + encodeURIComponent(document.getElementById("memberButtonColor").value);
+"&memberButtonColor=" + encodeURIComponent(document.getElementById("memberButtonColor").value) +
+
+"&verifyTitle=" +
+encodeURIComponent(document.getElementById("verifyTitle").value) +
+
+"&verifySubtitle=" +
+encodeURIComponent(document.getElementById("verifySubtitle").value) +
+
+"&verifyBackground=" +
+encodeURIComponent(document.getElementById("verifyBackground").value) +
+
+"&verifyCardColor=" +
+encodeURIComponent(document.getElementById("verifyCardColor").value) +
+
+"&verifyBorderColor=" +
+encodeURIComponent(document.getElementById("verifyBorderColor").value) +
+
+"&verifyActiveColor=" +
+encodeURIComponent(document.getElementById("verifyActiveColor").value) +
+
+"&verifyExpiredColor=" +
+encodeURIComponent(document.getElementById("verifyExpiredColor").value);
 
 console.log(url);
 

@@ -2,42 +2,76 @@ const API =
 "https://script.google.com/macros/s/AKfycbxSoky7ZD_mmJQwE_TbKX_hTPmMvQ3ZueIT-9oT-dp5tOgsLEeCxNHavTyuq1skEK-sxg/exec";
 
 const params = new URLSearchParams(window.location.search);
-
 const code = params.get("code");
 
-fetch(API + "?action=verify&code=" + encodeURIComponent(code))
+// Cargar configuración
+fetch(API + "?action=getSettings")
 .then(r => r.json())
-.then(member => {
+.then(settings => {
 
-const today = new Date();
+    if (settings.verifyTitle)
+        document.getElementById("verifyTitle").textContent =
+        settings.verifyTitle;
 
-let status = "ACTIVE MEMBER";
-let badgeColor = "#4CAF50";
+    if (settings.verifySubtitle)
+        document.getElementById("verifySubtitle").textContent =
+        settings.verifySubtitle;
 
-if (member.expira) {
+    if (settings.verifyBackground) {
 
-    const expiration = new Date(member.expira);
+        document.body.style.backgroundImage =
+        "url('" + settings.verifyBackground + "')";
 
-    if (expiration < today) {
-
-        status = "EXPIRED MEMBER";
-        badgeColor = "#ff4d6d";
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundPosition = "center";
+        document.body.style.backgroundRepeat = "no-repeat";
 
     }
 
-}
+    if (settings.logo) {
+
+        const logo = document.getElementById("verifyLogo");
+
+        logo.src = settings.logo;
+        logo.style.display = "block";
+
+    }
+
+    if (settings.verifyCardColor) {
+
+        document.documentElement.style.setProperty(
+            "--verify-card-color",
+            settings.verifyCardColor
+        );
+
+    }
+
+    if (settings.verifyBorderColor) {
+
+        document.documentElement.style.setProperty(
+            "--verify-border-color",
+            settings.verifyBorderColor
+        );
+
+    }
+
+    return fetch(
+        API + "?action=verify&code=" +
+        encodeURIComponent(code)
+    )
+})
+
+.then(r => r.json())
+
+.then(member => {
 
     if (!member.codigo){
 
-       document.getElementById("verifyStatus").textContent = status;
-
-document.getElementById("verifyStatus").style.background = badgeColor;
+        document.getElementById("verifyName").textContent =
+        "Invalid Membership";
 
         document.getElementById("verifyStatus").textContent =
         "INVALID";
-
-        document.getElementById("verifyStatus").style.background =
-        "#ff4d6d";
 
         return;
 
@@ -58,25 +92,33 @@ document.getElementById("verifyStatus").style.background = badgeColor;
 
     }
 
-    if(active){
+    fetch(API + "?action=getSettings")
+    .then(r => r.json())
+    .then(settings => {
 
-        document.getElementById("verifyStatus").textContent =
-        "ACTIVE";
+        if(active){
 
-        document.getElementById("verifyStatus").style.background =
-        "#35c759";
+            document.getElementById("verifyStatus").textContent =
+            "ACTIVE MEMBER";
 
-    }else{
+            document.getElementById("verifyStatus").style.background =
+            settings.verifyActiveColor || "#35c759";
 
-        document.getElementById("verifyStatus").textContent =
-        "EXPIRED";
+        }else{
 
-        document.getElementById("verifyStatus").style.background =
-        "#ff3b30";
+            document.getElementById("verifyStatus").textContent =
+            "EXPIRED MEMBER";
 
-    }
+            document.getElementById("verifyStatus").style.background =
+            settings.verifyExpiredColor || "#ff3b30";
+
+        }
+
+    });
 
     document.getElementById("verifyExpiration").textContent =
-        "Expires: " + member.expira;
+        member.expira
+        ? "Valid until: " + member.expira
+        : "";
 
 });
