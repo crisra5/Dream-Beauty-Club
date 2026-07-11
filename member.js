@@ -138,14 +138,23 @@ if (member.estado) {
 
         document.getElementById("memberQR").innerHTML = "";
 
-        new QRCode(document.getElementById("memberQR"), {
-            text: member.codigo,
-            width: 100,
-            height: 100,
-            colorDark: "#000000",
-            colorLight: "#ffffff",
-            correctLevel: QRCode.CorrectLevel.H
-        });
+        const verifyUrl =
+"https://crisra5.github.io/Dream-Beauty-Club/verify.html?code=" +
+encodeURIComponent(member.codigo);
+
+new QRCode(document.getElementById("memberQR"), {
+
+    text: verifyUrl,
+
+    width: 100,
+    height: 100,
+
+    colorDark: "#000000",
+    colorLight: "#ffffff",
+
+    correctLevel: QRCode.CorrectLevel.H
+
+});
 
     }
 
