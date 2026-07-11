@@ -6,6 +6,19 @@ if (!member) {
     window.location.href = "index.html";
 }
 
+fetch(API_URL + "?action=verify&code=" + encodeURIComponent(member.codigo))
+.then(r => r.json())
+.then(updated => {
+
+    member.estado = updated.estado;
+    member.expira = updated.expira;
+
+    localStorage.setItem("dreamMember", JSON.stringify(member));
+
+    updateMembershipStatus();
+
+});
+
 fetch(API_URL + "?action=getSettings")
 .then(r => r.json())
 .then(settings => {
@@ -117,35 +130,39 @@ if (settings.memberButtonColor) {
         document.getElementById("memberName").textContent = member.nombre;
     }
 
-    // Estado de la membresía
+ function updateMembershipStatus() {
 
-let active = false;
+    let active = false;
 
-if (member.expira) {
+    if (
+        member.estado &&
+        member.estado.toLowerCase() === "activo" &&
+        member.expira
+    ) {
 
-    const today = new Date();
+        const today = new Date();
+        const expiration = new Date(member.expira);
 
-    const expiration = new Date(member.expira);
+        active = expiration >= today;
+    }
 
-    active = expiration >= today;
+    if (active) {
 
-}
+        document.getElementById("memberStatus").textContent =
+            "✨ ACTIVE MEMBER ✨";
 
-if (active) {
+        document.getElementById("memberStatus").style.background =
+            "#35c759";
 
-    document.getElementById("memberStatus").textContent =
-        "✨ ACTIVE MEMBER ✨";
+    } else {
 
-    document.getElementById("memberStatus").style.background =
-        "#35c759";
+        document.getElementById("memberStatus").textContent =
+            "✨ EXPIRED MEMBER ✨";
 
-} else {
+        document.getElementById("memberStatus").style.background =
+            "#ff3b30";
 
-    document.getElementById("memberStatus").textContent =
-        "✨ EXPIRED MEMBER ✨";
-
-    document.getElementById("memberStatus").style.background =
-        "#ff3b30";
+    }
 
 }
 
