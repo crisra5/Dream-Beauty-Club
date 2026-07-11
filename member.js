@@ -1,6 +1,15 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbxSoky7ZD_mmJQwE_TbKX_hTPmMvQ3ZueIT-9oT-dp5tOgsLEeCxNHavTyuq1skEK-sxg/exec";
 
-const member = JSON.parse(localStorage.getItem("dreamMember"));
+fetch(API_URL + "?action=verify&code=" + encodeURIComponent(member.codigo))
+.then(r => r.json())
+.then(updatedMember => {
+
+    member.estado = updatedMember.estado;
+    member.expira = updatedMember.expira;
+
+    updateMemberCard();
+
+});
 
 if (!member) {
     window.location.href = "index.html";
